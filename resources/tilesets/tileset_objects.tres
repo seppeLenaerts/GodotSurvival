@@ -1,0 +1,24 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dx6nor8oeguwt"]
+
+[ext_resource type="Texture2D" uid="uid://bgowb6kseu5h4" path="res://resources/raw/Objects/Basic_Plants.png" id="1_wy5ks"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_blafi"]
+texture = ExtResource("1_wy5ks")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+4:0/0/custom_data_0 = true
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+
+[resource]
+custom_data_layer_0/name = "harvestable"
+custom_data_layer_0/type = 1
+sources/0 = SubResource("TileSetAtlasSource_blafi")
