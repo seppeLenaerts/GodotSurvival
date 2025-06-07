@@ -1,8 +1,9 @@
 using System.Collections.Generic;
-using Game.Actors;
+using Game.Resources.Items;
+using Game.Scenes.Actors;
 using Godot;
 
-namespace Game;
+namespace Game.Scenes;
 
 public partial class Main : Node2D
 {
@@ -48,14 +49,15 @@ public partial class Main : Node2D
 	private void HandleHarvestAction(InputEventMouse inputEventMouse)
 	{
 		var gridPos = GetGridCell(inputEventMouse.GlobalPosition);
-		if (!IsPlayerInSurroundingCell(gridPos, 2))
-		{
-			return;
-		}
 		var tile = objectLayer.GetCellTileData(gridPos);
 		if (tile != null && tile.HasCustomData("harvestable") && (bool)tile.GetCustomData("harvestable"))
 		{
-			objectLayer.SetCell(gridPos);
+			CropResource resource = (CropResource) tile.GetCustomData("crop");
+			if (IsPlayerInSurroundingCell(gridPos, resource.Radius))
+			{
+				objectLayer.SetCell(gridPos);
+				player.AddPopup("+1 " + resource.Type);
+			}
 		}
 	}
 

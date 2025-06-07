@@ -1,6 +1,20 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dx6nor8oeguwt"]
+[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://dx6nor8oeguwt"]
 
+[ext_resource type="Shader" uid="uid://bjqktah4w83xr" path="res://resources/shaders/wavy.gdshader" id="1_blafi"]
+[ext_resource type="Resource" uid="uid://ctvjpcwmfwjci" path="res://resources/items/wheat.tres" id="1_bndfd"]
 [ext_resource type="Texture2D" uid="uid://bgowb6kseu5h4" path="res://resources/raw/Objects/Basic_Plants.png" id="1_wy5ks"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bndfd"]
+shader = ExtResource("1_blafi")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = 0.0
+shader_parameter/heightOffset = 0.0
+shader_parameter/offset = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_blafi"]
 texture = ExtResource("1_wy5ks")
@@ -9,7 +23,9 @@ texture = ExtResource("1_wy5ks")
 2:0/0 = 0
 3:0/0 = 0
 4:0/0 = 0
+4:0/0/material = SubResource("ShaderMaterial_bndfd")
 4:0/0/custom_data_0 = true
+4:0/0/custom_data_1 = ExtResource("1_bndfd")
 5:0/0 = 0
 0:1/0 = 0
 1:1/0 = 0
@@ -21,4 +37,6 @@ texture = ExtResource("1_wy5ks")
 [resource]
 custom_data_layer_0/name = "harvestable"
 custom_data_layer_0/type = 1
+custom_data_layer_1/name = "crop"
+custom_data_layer_1/type = 24
 sources/0 = SubResource("TileSetAtlasSource_blafi")
