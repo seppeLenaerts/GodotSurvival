@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://crsym53ex4tdc"]
+
+[ext_resource type="Script" uid="uid://dqsf0gaitacy7" path="res://resources/autoload/AutoLoadCrops.cs" id="1_btru8"]
+[ext_resource type="Resource" uid="uid://ctvjpcwmfwjci" path="res://resources/items/wheat.tres" id="2_kugn8"]
+
+[node name="AutoLoad" type="Node"]
+
+[node name="Crops" type="Node" parent="."]
+script = ExtResource("1_btru8")
+CropResources = Array[Object]([ExtResource("2_kugn8")])

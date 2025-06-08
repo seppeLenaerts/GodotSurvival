@@ -6,10 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://b7m5bj2nxetl0" path="res://scenes/actors/player.tscn" id="3_sugp2"]
 [ext_resource type="TileSet" uid="uid://dibogx22ubjpf" path="res://resources/tilesets/tileset_highlight.tres" id="4_tbgi4"]
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("player", "objectLayer", "highlightLayer")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("player", "objectLayer", "groundLayer", "highlightLayer")]
 script = ExtResource("1_o5qli")
 player = NodePath("Player")
 objectLayer = NodePath("Ground/Objects")
+groundLayer = NodePath("Ground")
 highlightLayer = NodePath("Highlight")
 
 [node name="Ground" type="TileMapLayer" parent="."]

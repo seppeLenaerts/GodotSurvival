@@ -12,21 +12,17 @@ public partial class Main : Node2D
 
 	[Export]
 	private Player player;
-
+	[ExportCategory("Tilemap Layers")]
 	[Export]
 	private TileMapLayer objectLayer;
 	[Export]
+	private TileMapLayer groundLayer;
+	[Export]
 	private TileMapLayer highlightLayer;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		HighlightHoveredTile();
+		HighlightHoveredTileIfWalkable();
 	}
 
 	public override void _Input(InputEvent inputEvent)
@@ -35,8 +31,7 @@ public partial class Main : Node2D
 		{
 			if (mouse.ButtonMask == MouseButtonMask.Left)
 			{
-				var gridPos = GetGridCell(mouse.GlobalPosition);
-				player.SetVelocityTowards(gridPos * GRID_SIZE);
+				HandleMoveAction(mouse);
 			}
 
 			if (mouse.ButtonMask == MouseButtonMask.Right)
@@ -52,12 +47,22 @@ public partial class Main : Node2D
 		var tile = objectLayer.GetCellTileData(gridPos);
 		if (tile != null && tile.HasCustomData("harvestable") && (bool)tile.GetCustomData("harvestable"))
 		{
-			CropResource resource = (CropResource) tile.GetCustomData("crop");
+			CropResource resource = (CropResource)tile.GetCustomData("crop");
 			if (IsPlayerInSurroundingCell(gridPos, resource.Radius))
 			{
 				objectLayer.SetCell(gridPos);
 				player.AddPopup("+1 " + resource.Type);
+				player.AddResource(resource);
 			}
+		}
+	}
+
+	private void HandleMoveAction(InputEventMouse inputEventMouse)
+	{
+		var gridPos = GetGridCell(inputEventMouse.GlobalPosition);
+		if (IsCellWalkable(inputEventMouse.GlobalPosition))
+		{
+			player.SetVelocityTowards(gridPos * GRID_SIZE);
 		}
 	}
 
@@ -80,11 +85,28 @@ public partial class Main : Node2D
 		return surroundingCells.Contains(playerCell);
 	}
 
-	private void HighlightHoveredTile()
+	private void HighlightHoveredTileIfWalkable()
 	{
 		highlightLayer.Clear();
 		var mousePos = GetGlobalMousePosition();
-		var cell = highlightLayer.LocalToMap(ToLocal(mousePos));
-		highlightLayer.SetCell(cell, 0, new Vector2I(5, 5));
+		var highlightCell = highlightLayer.LocalToMap(ToLocal(mousePos));
+
+		if (IsCellWalkable(mousePos))
+		{
+			highlightLayer.SetCell(highlightCell, 0, new Vector2I(5, 5));
+		}
+	}
+
+	private bool IsCellWalkable(Vector2 pos)
+	{
+		var groundCell = groundLayer.LocalToMap(ToLocal(pos));
+		if (groundLayer.GetCellSourceId(groundCell) == -1)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
 	}
 }
