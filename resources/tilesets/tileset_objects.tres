@@ -1,8 +1,9 @@
-[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://dx6nor8oeguwt"]
+[gd_resource type="TileSet" load_steps=8 format=3 uid="uid://dx6nor8oeguwt"]
 
 [ext_resource type="Shader" uid="uid://bjqktah4w83xr" path="res://resources/shaders/wavy.gdshader" id="1_blafi"]
 [ext_resource type="Resource" uid="uid://ctvjpcwmfwjci" path="res://resources/items/wheat.tres" id="1_bndfd"]
 [ext_resource type="Texture2D" uid="uid://bgowb6kseu5h4" path="res://resources/raw/Objects/Basic_Plants.png" id="1_wy5ks"]
+[ext_resource type="PackedScene" uid="uid://ciyh5178cgloo" path="res://scenes/containers/container.tscn" id="4_rufg8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bndfd"]
 shader = ExtResource("1_blafi")
@@ -34,9 +35,13 @@ texture = ExtResource("1_wy5ks")
 4:1/0 = 0
 5:1/0 = 0
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_d6ofb"]
+scenes/1/scene = ExtResource("4_rufg8")
+
 [resource]
 custom_data_layer_0/name = "harvestable"
 custom_data_layer_0/type = 1
 custom_data_layer_1/name = "crop"
 custom_data_layer_1/type = 24
 sources/0 = SubResource("TileSetAtlasSource_blafi")
+sources/1 = SubResource("TileSetScenesCollectionSource_d6ofb")

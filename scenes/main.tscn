@@ -20,7 +20,7 @@ tile_set = ExtResource("2_0wfyh")
 
 [node name="Objects" type="TileMapLayer" parent="Ground"]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAPAAoAAAAEAAAAAAANAAoAAAAEAAAAAAAMAAoAAAAEAAAAAAAKAAoAAAAEAAAAAAA=")
+tile_map_data = PackedByteArray("AAAPAAoAAAAEAAAAAAANAAoAAAAEAAAAAAAMAAoAAAAEAAAAAAAKAAoAAAAEAAAAAAAHAAoAAQAAAAAAAQA=")
 tile_set = ExtResource("3_jyhfs")
 
 [node name="Highlight" type="TileMapLayer" parent="."]
